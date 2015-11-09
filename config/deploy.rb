@@ -53,7 +53,7 @@ namespace :mailcatcher do
   set_default :mailcatcher_smtp_ip,   -> { '0.0.0.0' }
   set_default :mailcatcher_smtp_port, -> { '1025' }
   set_default :mailcatcher_http_ip,   -> { '0.0.0.0' }
-  set_default :mailcatcher_http_port, -> { '1080' }
+  set_default :mailcatcher_http_port, -> { '1388' }
 
   desc 'Starts a new mailcatcher on the server'
   task :start => :environment do
