@@ -18,7 +18,7 @@ set :branch,     'master'
 
 set :rvm_string, ENV['DEPLOY_RVM_STRING']
 
-set :shared_paths, []
+set :shared_paths, ['log']
 
 # This task is the environment that is loaded for most commands, such as
 # `mina deploy` or `mina rake`.
@@ -32,7 +32,8 @@ end
 # all releases.
 task :setup => :environment do
   # Puma needs a place to store its pid file and socket file.
-  queue! %(mkdir -p "#{deploy_to}/#{shared_path}/tmp")
+  queue! %[mkdir -p "#{deploy_to}/#{shared_path}/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/#{shared_path}/log"]
 end
 
 desc "Deploys the current version to the server."
@@ -55,8 +56,9 @@ namespace :mailcatcher do
   set_default :mailcatcher_http_ip,   -> { '0.0.0.0' }
   set_default :mailcatcher_http_port, -> { '1388' }
 
+
   desc 'Starts a new mailcatcher on the server'
   task :start => :environment do
-    queue! %[cd #{deploy_to}/#{current_path} && #{mailcatcher_cmd} --smtp-ip #{mailcatcher_smtp_ip} --smtp-port #{mailcatcher_smtp_port} --http-ip #{mailcatcher_http_ip} --http-port #{mailcatcher_http_port}]
+    queue! %[cd #{deploy_to}/#{current_path} && #{mailcatcher_cmd} -f --smtp-ip #{mailcatcher_smtp_ip} --smtp-port #{mailcatcher_smtp_port} --http-ip #{mailcatcher_http_ip} --http-port #{mailcatcher_http_port} > #{deploy_to}/#{current_path}/log/mailcatcher.log 2>&1 &]
   end
 end
