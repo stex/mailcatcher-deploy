@@ -59,6 +59,6 @@ namespace :mailcatcher do
 
   desc 'Starts a new mailcatcher on the server'
   task :start => :environment do
-    queue! %[cd #{deploy_to}/#{current_path} && #{mailcatcher_cmd} -f --smtp-ip #{mailcatcher_smtp_ip} --smtp-port #{mailcatcher_smtp_port} --http-ip #{mailcatcher_http_ip} --http-port #{mailcatcher_http_port}]
+    queue! %[cd #{deploy_to}/#{current_path} && #{mailcatcher_cmd} --smtp-ip #{mailcatcher_smtp_ip} --smtp-port #{mailcatcher_smtp_port} --http-ip #{mailcatcher_http_ip} --http-port #{mailcatcher_http_port}]
   end
 end
