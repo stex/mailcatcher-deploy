@@ -13,6 +13,8 @@ Dotenv.load
 
 set :domain,      ENV['DEPLOY_DOMAIN']
 set :deploy_to,   ENV['DEPLOY_TO']
+set :user,        ENV['DEPLOY_USER']
+
 set :repository, 'https://github.com/stex/mailcatcher-deploy.git'
 set :branch,     'master'
 
@@ -51,10 +53,10 @@ end
 namespace :mailcatcher do
   set_default :bundle_prefix,         -> { 'bundle exec' }
   set_default :mailcatcher_cmd,       -> { "#{bundle_prefix} mailcatcher" }
-  set_default :mailcatcher_smtp_ip,   -> { '0.0.0.0' }
-  set_default :mailcatcher_smtp_port, -> { '1025' }
-  set_default :mailcatcher_http_ip,   -> { '0.0.0.0' }
-  set_default :mailcatcher_http_port, -> { '1388' }
+  set_default :mailcatcher_smtp_ip,   -> { ENV['SMTP_IP'] }
+  set_default :mailcatcher_smtp_port, -> { ENV['SMTP_PORT'] }
+  set_default :mailcatcher_http_ip,   -> { ENV['HTTP_IP'] }
+  set_default :mailcatcher_http_port, -> { ENV['HTTP_PORT'] }
 
 
   desc 'Starts a new mailcatcher on the server'
