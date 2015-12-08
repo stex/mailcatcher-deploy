@@ -14,6 +14,7 @@ Dotenv.load
 set :domain,      ENV['DEPLOY_DOMAIN']
 set :deploy_to,   ENV['DEPLOY_TO']
 set :user,        ENV['DEPLOY_USER']
+set :port,        ENV['DEPLOY_PORT']
 
 set :repository, 'https://github.com/stex/mailcatcher-deploy.git'
 set :branch,     'master'

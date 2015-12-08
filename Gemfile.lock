@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/stex/mailcatcher.git
-  revision: c4f2d6594752c2ce3664451cbb27e11475568abd
+  revision: a27a6e3bd92aba3042317211b96f57460727c9fa
   specs:
     mailcatcher (0.6.1)
       activesupport (>= 4.0.0, < 5)
