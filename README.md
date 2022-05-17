@@ -1,5 +1,7 @@
 # mailcatcher-deploy
 
+**DEPRECATED and ARCHIVED** since this is no longer how it should be done. Use a docker image (preferably mailhog) instead!
+
 A simple deploy script to install the necessary gems and run mailcatcher on your server.
 
 ## Usage
